@@ -3,25 +3,37 @@
 import os
 import uuid
 
+from werkzeug.utils import secure_filename
+
 
 class Report(object):
     def __init__(self, base_dir):
         self.base_dir = base_dir
 
-    def set_data_by_pb(self, value):
-        pass
+    def set_data_by_pb(self, file):
+        filename = self.get_filename('data.pb')
+        file.save(filename)
 
-    def set_data_by_json(self, value):
-        pass
+    def set_data_by_json(self, file):
+        filename = self.get_filename('data.json')
+        file.save(filename)
 
-    def set_icon(self, value):
-        pass
+    def set_icon(self, file):
+        filename = self.get_filename('icon.png')
+        file.save(filename)
 
-    def add_screenshots(self, screenshots):
-        pass
+    def add_screenshots(self, files):
+        for file in files:
+            filename = self.get_filename(secure_filename(file.filename))
+            file.save(filename)
 
     def done(self):
-        pass
+        filename = self.get_filename('done')
+        with open(filename, 'wb'):
+            pass
+
+    def get_filename(self, filename):
+        return '%s%s%s' % (self.base_dir, os.sep, filename)
 
 
 class ReportManager(object):
@@ -47,15 +59,15 @@ class ReportManager(object):
 reportManager = ReportManager()
 
 
-def create_by_json(value):
+def create_by_pb(file):
     (report_id, report) = reportManager.create_report()
-    report.set_data_by_json(value)
+    report.set_data_by_pb(file)
     return report_id
 
 
-def create_by_pb(value):
+def create_by_json(file):
     (report_id, report) = reportManager.create_report()
-    report.set_data_by_pb(value)
+    report.set_data_by_json(file)
     return report_id
 
 
