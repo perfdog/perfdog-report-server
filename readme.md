@@ -1,12 +1,16 @@
-1. 安装python 3.x版本，一般使用最新版就好
-2. 安装flask框架，推荐使用pip安装
-3. 启动执行
-    + windows => run.bat
-    + macos && linux => run.sh
-> 启动脚本使用了缺省的80作为http服务端口，如果因为操作系统限制不让使用80端口，可使用管理员权限运行启动脚本，也可以通过更改上面提到的脚本，使用其它端口作为http服务端口。
-4. 仅供开发调试环境使用，部署时请使用类似Gunicorn和uWSGI的方案
-5. PerfDog配置上传地址，以demo和perfdog同机部署运行，使用缺省的启动脚本为例，在PerfDog中配置的上传地址为：http://127.0.0.1:80/report
-    + http： 一般无需更改
-    + 127.0.0.1： 为demo和perfdog同机部署时使用的本地地址，如果此demo部署和perfdog非同一计算机运行，此处需要更换为部署demo计算机真实的IP地址（或者域名）。
-    + 80： 为demo作为上传服务使用的端口，如果更改了启动脚本，使用其它端口启动了demo, 上传地址需要更换为更改过后相应的端口
-    + /report： 一般无需更改
+## language
+- [English](readme.md)
+- [中文](readme_zh.md)
+
+1. Install python 3.x version. Generally, just use the latest version.
+2. Install the flask framework. It is recommended to use pip to install it.
+3. Start execution
+     + windows => run.bat
+     + macos && linux => run.sh
+> The startup script uses the default 80 as the http service port. If port 80 is not allowed to be used due to operating system restrictions, you can run the startup script with administrator privileges, or you can use other ports as the http service by changing the script mentioned above.
+4. For development and debugging environment only, please use solutions like Gunicorn and uWSGI when deploying.
+5. PerfDog configures the upload address. Deploy and run demo and perfdog on the same machine. Using the default startup script as an example, the upload address configured in PerfDog is: http://127.0.0.1:80/report
+     + http: Generally no need to change
+     + 127.0.0.1: This is the local address used when demo and perfdog are deployed on the same computer. If the demo deployment and perfdog are not running on the same computer, this needs to be replaced with the real IP address (or domain name) of the computer where the demo is deployed.
+     + 80: The port used by the demo as the upload service. If the startup script is changed and the demo is started using other ports, the upload address needs to be changed to the corresponding port after the change.
+     + /report: Generally no need to change
